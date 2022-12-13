@@ -33,14 +33,15 @@ $(".search-button").on("click", function() {
     })
     .then(function (data) {
         document.getElementById("cityname").textContent = "City: " + data.name;
-       document.getElementById("temp").textContent = "Temp: " + data.main.temp;
-       document.getElementById("wind").textContent = "Wind: " + data.wind.speed;
-       document.getElementById("humidity").textContent = "Humidity: " + data.main.humidity;
+        var temperature = Math.ceil((data.main.temp  - 273.15) * 1.80 + 32);
+       document.getElementById("temp").textContent = "Temp: " + temperature +"°F";
+       var windSpeed = Math.ceil(data.wind.speed*2.237);
+       document.getElementById("wind").textContent = "Wind: " + windSpeed +" mph";
+       document.getElementById("humidity").textContent = "Humidity: " + data.main.humidity + "%";
     //   Testing Fetching API city name
        console.log(data.name);
     });
-    // testing search button
-    // console.log(currentCity);
+    
 
 });
 
@@ -50,7 +51,5 @@ $(".clear-history").on("click", function() {
 
 });
 
-
-// Console logs API in the console log
 
 
