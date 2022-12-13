@@ -40,7 +40,7 @@ $(".search-button").on("click", function() {
        console.log(data.name);
     });
     // testing search button
-    console.log(currentCity);
+    // console.log(currentCity);
 
 });
 
