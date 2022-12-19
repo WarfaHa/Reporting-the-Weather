@@ -6,11 +6,11 @@ var searchCityEl = document.getElementById("searchCity");
 
 
 
-var timeDisplayEl = $('#currentDay');
+var time = "";
 
 function displayTime() {
-    var rightNow = dayjs().format('dddd, MMMM D, YYYY');
-    timeDisplayEl.text(rightNow);
+    var rightNow = dayjs().format('(MM/DD/YYYY)');
+    time= rightNow;
     
   }
   
@@ -32,11 +32,11 @@ $(".search-button").on("click", function() {
       return response.json();
     })
     .then(function (data) {
-        document.getElementById("cityname").textContent = "City: " + data.name;
+        document.getElementById("cityname").textContent = data.name +" " + time;
         var temperature = Math.ceil((data.main.temp  - 273.15) * 1.80 + 32);
        document.getElementById("temp").textContent = "Temp: " + temperature +"°F";
        var windSpeed = Math.ceil(data.wind.speed*2.237);
-       document.getElementById("wind").textContent = "Wind: " + windSpeed +" mph";
+       document.getElementById("wind").textContent = "Wind: " + windSpeed +"mph";
        var humidity = data.main.humidity;
        document.getElementById("humidity").textContent = "Humidity: " + humidity + "%";
     //   Testing Fetching API city name
@@ -48,7 +48,7 @@ $(".search-button").on("click", function() {
 
 });
 function forecast(){
-  var currentCity = "columbus";
+  var currentCity = searchCityEl.value;
   apiURL= "https://api.openweathermap.org/data/2.5/forecast?q=" + currentCity + "&APPID=" + apiKey;
 
   fetch(apiURL, {
@@ -67,7 +67,7 @@ function forecast(){
         var temperature = Math.ceil((data.list[i].main.temp  - 273.15) * 1.80 + 32);
         document.getElementById(`dayTemp${i+1}`).textContent = "Temp: " + temperature +"°F";
         var windSpeed = Math.ceil(data.list[i].wind.speed*2.237);
-        document.getElementById(`dayWind${i+1}`).textContent = "Wind: " + windSpeed +" mph";
+        document.getElementById(`dayWind${i+1}`).textContent = "Wind: " + windSpeed +"mph";
         var humidity = data.list[i].main.humidity;
         document.getElementById(`dayHumidity${i+1}`).textContent = "Humidity: " + humidity +"%";
       }
