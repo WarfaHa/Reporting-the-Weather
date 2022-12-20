@@ -18,7 +18,7 @@ This week, we had to use the OpenWeather API to retrieve weather data and build 
 ![Screenshot-of-Portfolio](./assets/screenshot.PNG)
 
 Deployed Site:
-
+https://warfaha.github.io/Reporting-the-Weather/
 
 ## Installation
 N/A 
